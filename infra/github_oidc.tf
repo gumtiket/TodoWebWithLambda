@@ -21,7 +21,10 @@ data "aws_iam_policy_document" "github_actions_assume_role" {
     condition {
       test     = "StringEquals"
       variable = "token.actions.githubusercontent.com:sub"
-      values   = ["repo:gumtiket/TodoWebWithLambda:ref:refs/heads/main"]
+      values = [
+        "repo:gumtiket/TodoWebWithLambda:ref:refs/heads/main",
+        "repo:gumtiket@${var.github_owner_id}/TodoWebWithLambda@${var.github_repo_id}:ref:refs/heads/main",
+      ]
     }
   }
 }
